@@ -1,16 +1,25 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const {type} = require("os");
 const {stdout, stdin} = process;
 
 let fileName = fs.createWriteStream(path.join(__dirname, 'text.txt'));
 
+const exit = () => {
+    stdout.write('Successful write data');
+    process.exit();
+};
+
 stdout.write('\n To leave press "Ctrl + C" \n Enter data:\n\n');
 
 stdin.on('data', (text) => {
-    fileName.write(text);
+    if(text.toString().toLowerCase().trim() === 'exit'){
+        exit();
+    } else {
+        fileName.write(text);
+    }
 });
 
 process.on('SIGINT', () => {
-    stdout.write('Successful write data');
-    process.exit();
+    exit();
 });
