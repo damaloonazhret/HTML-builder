@@ -21,7 +21,7 @@ async function copyDir(dir, copy) {
 
     });
 
-    fs.readdir(dir, {withFileTypes: true}, (err, files) => {
+    await fs.readdir(dir, {withFileTypes: true}, (err, files) => {
         if (err) {
             console.log(err);
         } else {
@@ -44,4 +44,6 @@ async function copyDir(dir, copy) {
 
 }
 
-copyDir(directory, directoryCopy);
+copyDir(directory, directoryCopy).then(r => {
+    console.log('Successful copy');
+});

@@ -10,8 +10,8 @@ async function bundle(style) {
     const allStyles = await fs.promises.readdir(style, {withFileTypes: true});
     for (const currentStyle of allStyles) {
         const N = currentStyle.name;
-        const position = N.indexOf('.');
-        const ext = N.slice(-(N.length - position) + 1);
+        const position = N.lastIndexOf('.');
+        const ext = N.slice(-(N.length - position) + 1).toLowerCase();
         if (ext === 'css') {
             await fs.createReadStream(path.join(style, currentStyle.name))
                 .on('data', data => OUTPUT.write(data));
@@ -20,5 +20,5 @@ async function bundle(style) {
 }
 
 bundle(stylesFolder).then(r => {
-    console.log('\nSuccessful\n');
+    console.log('\nSuccessful bundle\n');
 });

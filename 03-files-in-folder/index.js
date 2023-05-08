@@ -11,7 +11,7 @@ fs.readdir(directory, {withFileTypes: true}, (err, files) => {
         files.forEach(file => {
             if (file.isFile()) {
                 const N = file.name;
-                const position = N.indexOf('.');
+                const position = N.lastIndexOf('.');
                 const name = N.slice(0, position);
                 const ext = N.slice(-(N.length - position)+1);
                 const filePath = path.join(directory, file.name);
