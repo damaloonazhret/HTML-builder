@@ -7,10 +7,10 @@ let result = '';
 
 fs.createReadStream(path.join(fileName), 'utf-8')
 
-.on('data', function (chunk) {
+  .on('data', function (chunk) {
     result += chunk;
-})
+  })
 
-.on('end', function () {
+  .on('end', function () {
     stdout.write(result);
-});
+  });
