@@ -15,7 +15,6 @@ async function copyDir(dir, copy) {
                     if (err) {
                         return err;
                     }
-                    ;
                 });
             });
         }
